@@ -10,7 +10,7 @@ public class Movie {
     private String title;
     private List<MovieGenre> genres;
     private List<Performance> performers;
-    private Locale countryOfOriginLocale;
+    private String countryOfOrigin;
     private String description;
     private LocalDate productionDate;
 
@@ -54,12 +54,12 @@ public class Movie {
         this.performers = performers;
     }
 
-    public Locale getCountryOfOriginLocale() {
-        return countryOfOriginLocale;
+    public String getCountryOfOrigin() {
+        return countryOfOrigin;
     }
 
-    public void setCountryOfOriginLocale(Locale countryOfOriginLocale) {
-        this.countryOfOriginLocale = countryOfOriginLocale;
+    public void setCountryOfOrigin(String countryOfOrigin) {
+        this.countryOfOrigin = countryOfOrigin;
     }
 
     public String getDescription() {
@@ -71,7 +71,7 @@ public class Movie {
     }
 
     public void updateIgnoreId(Movie movie){
-        this.countryOfOriginLocale = movie.getCountryOfOriginLocale();
+        this.countryOfOrigin = movie.getCountryOfOrigin();
         this.description = movie.getDescription();
         this.genres = movie.getGenres();
         this.performers = movie.getPerformers();
