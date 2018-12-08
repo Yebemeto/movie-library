@@ -2,16 +2,25 @@ package com.mlasek.core;
 
 import com.google.common.base.Objects;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Movie {
     private UUID id;
     private String title;
-    private Map<PersonRole,List<Person>> peopleInvolved = new HashMap<>();
     private List<MovieGenre> genres;
     private List<Performance> performers;
     private Locale countryOfOriginLocale;
     private String description;
+    private LocalDate productionDate;
+
+    public LocalDate getProductionDate() {
+        return productionDate;
+    }
+
+    public void setProductionDate(LocalDate productionDate) {
+        this.productionDate = productionDate;
+    }
 
     public UUID getId() {
         return id;
@@ -27,14 +36,6 @@ public class Movie {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Map<PersonRole, List<Person>> getPeopleInvolved() {
-        return peopleInvolved;
-    }
-
-    public void setPeopleInvolved(Map<PersonRole, List<Person>> peopleInvolved) {
-        this.peopleInvolved = peopleInvolved;
     }
 
     public List<MovieGenre> getGenres() {
@@ -67,6 +68,15 @@ public class Movie {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void updateIgnoreId(Movie movie){
+        this.countryOfOriginLocale = movie.getCountryOfOriginLocale();
+        this.description = movie.getDescription();
+        this.genres = movie.getGenres();
+        this.performers = movie.getPerformers();
+        this.title = movie.getTitle();
+        this.productionDate = movie.getProductionDate();
     }
 
     @Override
