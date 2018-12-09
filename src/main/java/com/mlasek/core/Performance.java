@@ -1,32 +1,20 @@
 package com.mlasek.core;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Performance {
-    private Person person;
+    private String performerName;
     private PersonRole role;
-    private Movie movie;
 
-    public Person getPerson() {
-        return person;
+    @JsonProperty
+    public String getPerformerName() {
+        return performerName;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
+    @JsonProperty
     public PersonRole getRole() {
         return role;
     }
 
-    public void setRole(PersonRole role) {
-        this.role = role;
-    }
-
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
 }

@@ -1,6 +1,6 @@
 package com.mlasek.core;
 
-import com.google.common.base.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -12,62 +12,45 @@ public class Movie {
     private List<Performance> performers;
     private String countryOfOrigin;
     private String description;
-    private LocalDate productionDate;
-
-    public LocalDate getProductionDate() {
-        return productionDate;
-    }
-
-    public void setProductionDate(LocalDate productionDate) {
-        this.productionDate = productionDate;
-    }
-
-    public UUID getId() {
-        return id;
-    }
+    private LocalDate releaseDate;
 
     public void setId(UUID id) {
         this.id = id;
     }
 
+    @JsonProperty
+    public UUID getId() {
+        return id;
+    }
+
+    @JsonProperty
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
+    @JsonProperty
     public List<MovieGenre> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<MovieGenre> genres) {
-        this.genres = genres;
-    }
-
+    @JsonProperty
     public List<Performance> getPerformers() {
         return performers;
     }
 
-    public void setPerformers(List<Performance> performers) {
-        this.performers = performers;
-    }
-
+    @JsonProperty
     public String getCountryOfOrigin() {
         return countryOfOrigin;
     }
 
-    public void setCountryOfOrigin(String countryOfOrigin) {
-        this.countryOfOrigin = countryOfOrigin;
-    }
-
+    @JsonProperty
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    @JsonProperty
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
     public void updateIgnoreId(Movie movie){
@@ -76,19 +59,7 @@ public class Movie {
         this.genres = movie.getGenres();
         this.performers = movie.getPerformers();
         this.title = movie.getTitle();
-        this.productionDate = movie.getProductionDate();
+        this.releaseDate = movie.getReleaseDate();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Movie movie = (Movie) o;
-        return Objects.equal(id, movie.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }
