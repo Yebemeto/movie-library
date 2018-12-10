@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
+import com.mlasek.api.MovieFilter;
 import com.mlasek.core.Movie;
 
 import java.io.IOException;
@@ -28,6 +29,11 @@ public class DummyMovieRepository implements MovieRepository {
     @Override
     public List<Movie> findAll() {
         return movies;
+    }
+
+    @Override
+    public List<Movie> filter(MovieFilter filter) {
+        return null;
     }
 
     @Override
