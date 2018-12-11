@@ -79,6 +79,16 @@ public class MovieFilter {
             return this;
         }
 
+        public Builder withDateFrom(LocalDate dateFrom){
+            this.dateFrom = dateFrom;
+            return this;
+        }
+
+        public Builder withDateTo(LocalDate dateTo){
+            this.dateTo = dateTo;
+            return this;
+        }
+
         public Builder withDateFrom(Optional<LocalDateParam> dateFrom){
             if(dateFrom.isPresent()) {
                 this.dateFrom = dateFrom.get().get();
