@@ -1,18 +1,21 @@
 package com.mlasek.core;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import java.time.LocalDate;
 import java.util.*;
 
 public class Movie {
     private UUID id;
+    @NotEmpty
     private String title;
-    private List<MovieGenre> genres;
-    private List<Performance> performers;
+    private List<MovieGenre> genres = new ArrayList<>();
+    private List<Performance> performers = new ArrayList<>();
     private String countryOfOrigin;
     private String description;
     private LocalDate releaseDate;
+    private Integer duration;
 
     public void setId(UUID id) {
         this.id = id;
@@ -53,6 +56,11 @@ public class Movie {
         return releaseDate;
     }
 
+    @JsonProperty
+    public Integer getDuration() {
+        return duration;
+    }
+
     public void updateIgnoreId(Movie movie){
         this.countryOfOrigin = movie.getCountryOfOrigin();
         this.description = movie.getDescription();
@@ -60,6 +68,7 @@ public class Movie {
         this.performers = movie.getPerformers();
         this.title = movie.getTitle();
         this.releaseDate = movie.getReleaseDate();
+        this.duration = movie.getDuration();
     }
 
 }
