@@ -9,6 +9,7 @@ import io.dropwizard.jersey.jsr310.LocalDateParam;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -63,5 +64,12 @@ public class MovieResource {
         return repository.update(id, movie)
                 .orElseThrow(() ->
                         new WebApplicationException("Movie not found", 404));
+    }
+
+    @DELETE
+    @Path("{id}")
+    public Response delete(@PathParam("id") UUID id) {
+        repository.delete(id);
+        return Response.ok().build();
     }
 }
