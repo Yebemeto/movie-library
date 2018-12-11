@@ -10,6 +10,7 @@ import io.dropwizard.jersey.jsr310.LocalDateParam;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Path("/movies")
@@ -23,17 +24,19 @@ public class MovieResource {
     private MovieRepository repository;
 
     @GET
-    public Movie movie(
+    public List<Movie> movie(
             @QueryParam("id") UUID id,
             @QueryParam("title") String title,
             @QueryParam("genre") MovieGenre genre,
             @QueryParam("performer") String performer,
             @QueryParam("role") PersonRole role,
             @QueryParam("origin") String origin,
-            @QueryParam("dateFrom") LocalDateParam dateFrom,
-            @QueryParam("dateTo") LocalDateParam dateTo) {
+            @QueryParam("dateFrom") Optional<LocalDateParam> dateFrom,
+            @QueryParam("dateTo") Optional<LocalDateParam> dateTo,
+            @QueryParam("durationFrom") Integer durationFrom,
+            @QueryParam("durationTo") Integer durationTo) {
 
-        MovieFilter filter = new MovieFilter.MovieFilterBuilder()
+        MovieFilter filter = MovieFilter.builder()
                 .withDateFrom(dateFrom)
                 .withDateTo(dateTo)
                 .withGenre(genre)
@@ -42,16 +45,11 @@ public class MovieResource {
                 .withPerformer(performer)
                 .withRole(role)
                 .withTitle(title)
+                .withDurationFrom(durationFrom)
+                .withDurationTo(durationTo)
                 .build();
 
-        return repository.findById(id)
-                .orElseThrow(() ->
-                        new WebApplicationException("Movie not found", 404));
-    }
-
-    @GET
-    public List<Movie> allMovies(){
-        return repository.findAll();
+        return repository.filter(filter);
     }
 
     @POST
