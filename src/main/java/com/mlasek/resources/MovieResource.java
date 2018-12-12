@@ -3,7 +3,7 @@ package com.mlasek.resources;
 import com.mlasek.api.MovieFilter;
 import com.mlasek.core.Movie;
 import com.mlasek.core.MovieGenre;
-import com.mlasek.core.PersonRole;
+import com.mlasek.core.Role;
 import com.mlasek.db.MovieRepository;
 import io.dropwizard.jersey.jsr310.LocalDateParam;
 
@@ -30,7 +30,7 @@ public class MovieResource {
             @QueryParam("title") String title,
             @QueryParam("genre") MovieGenre genre,
             @QueryParam("performer") String performer,
-            @QueryParam("role") PersonRole role,
+            @QueryParam("role") Role role,
             @QueryParam("origin") String origin,
             @QueryParam("dateFrom") Optional<LocalDateParam> dateFrom,
             @QueryParam("dateTo") Optional<LocalDateParam> dateTo,

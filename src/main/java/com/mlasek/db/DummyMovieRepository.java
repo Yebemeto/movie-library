@@ -2,7 +2,7 @@ package com.mlasek.db;
 
 import com.mlasek.api.MovieFilter;
 import com.mlasek.core.Movie;
-import com.mlasek.core.PersonRole;
+import com.mlasek.core.Role;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,7 +15,6 @@ public class DummyMovieRepository implements MovieRepository {
         this.movies = movies;
     }
 
-    private static final String DATA_SOURCE = "starting_dummy_data.json";
     private List<Movie> movies = Collections.synchronizedList(new ArrayList<>());
 
     @Override
@@ -83,7 +82,7 @@ public class DummyMovieRepository implements MovieRepository {
     // even if that data is not filled in), this method assumes that if you have specified only the role to filter by
     //it will return true for every movie. Otherwise, if both role and performer are filled it only returns true for movies that
     //have that performer in that particular role.
-    private boolean anyPerformerMatch(Movie movie,String performerName, PersonRole role){
+    private boolean anyPerformerMatch(Movie movie,String performerName, Role role){
             return movie.getPerformers().stream().anyMatch(performance ->
                     Objects.isNull(performerName)||
                             (performance.getPerformerName().equals(performerName)&&

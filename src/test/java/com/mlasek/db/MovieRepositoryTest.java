@@ -7,7 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mlasek.api.MovieFilter;
 import com.mlasek.core.Movie;
 import com.mlasek.core.MovieGenre;
-import com.mlasek.core.PersonRole;
+import com.mlasek.core.Role;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -45,7 +45,7 @@ public class MovieRepositoryTest {
                 .withId(MOCKED_MOVIE_UUID)
                 .withOrigin("USA")
                 .withPerformer("Mario Puzo")
-                .withRole(PersonRole.SCREENWRITER)
+                .withRole(Role.SCREENWRITER)
                 .withTitle("The Godfather")
                 .build();
         assertThat(repository.filter(filter).size()).isEqualTo(1);
@@ -59,9 +59,9 @@ public class MovieRepositoryTest {
 
     @Test
     public void testPerformerFilter(){
-        MovieFilter roleOnlyFilter = MovieFilter.builder().withRole(PersonRole.SCREENWRITER).build();
+        MovieFilter roleOnlyFilter = MovieFilter.builder().withRole(Role.SCREENWRITER).build();
         MovieFilter personOnlyFilter = MovieFilter.builder().withPerformer("Mario Puzo").build();
-        MovieFilter personRoleFilter = MovieFilter.builder().withPerformer("Mario Puzo").withRole(PersonRole.ACTOR).build();
+        MovieFilter personRoleFilter = MovieFilter.builder().withPerformer("Mario Puzo").withRole(Role.ACTOR).build();
         assertThat(repository.filter(roleOnlyFilter).size()).isEqualTo(repository.findAll().size());
         assertThat(repository.filter(personOnlyFilter).size()).isEqualTo(1);
         assertThat(repository.filter(personRoleFilter).size()).isEqualTo(0);

@@ -1,5 +1,5 @@
 package com.mlasek.core;
 
-public enum PersonRole {
+public enum Role {
     DIRECTOR, SCREENWRITER, ACTOR, PRODUCER
 }

@@ -1,7 +1,7 @@
 package com.mlasek.api;
 
 import com.mlasek.core.MovieGenre;
-import com.mlasek.core.PersonRole;
+import com.mlasek.core.Role;
 import io.dropwizard.jersey.jsr310.LocalDateParam;
 
 import java.time.LocalDate;
@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class MovieFilter {
-    private MovieFilter(UUID id, String title, MovieGenre genre, String performer, PersonRole role, String origin, LocalDate dateFrom, LocalDate dateTo, Integer durationFrom, Integer durationTo) {
+    private MovieFilter(UUID id, String title, MovieGenre genre, String performer, Role role, String origin, LocalDate dateFrom, LocalDate dateTo, Integer durationFrom, Integer durationTo) {
         this.id = id;
         this.title = title;
         this.genre = genre;
@@ -26,7 +26,7 @@ public class MovieFilter {
     private String title;
     private MovieGenre genre;
     private String performer;
-    private PersonRole role;
+    private Role role;
     private String origin;
     private LocalDate dateFrom;
     private LocalDate dateTo;
@@ -42,7 +42,7 @@ public class MovieFilter {
         private String title;
         private MovieGenre genre;
         private String performer;
-        private PersonRole role;
+        private Role role;
         private String origin;
         private LocalDate dateFrom;
         private LocalDate dateTo;
@@ -69,7 +69,7 @@ public class MovieFilter {
             return this;
         }
 
-        public Builder withRole(PersonRole role){
+        public Builder withRole(Role role){
             this.role = role;
             return this;
         }
@@ -149,11 +149,11 @@ public class MovieFilter {
         this.performer = performer;
     }
 
-    public PersonRole getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(PersonRole role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

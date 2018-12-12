@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Performance {
     private String performerName;
-    private PersonRole role;
+    private Role role;
 
     @JsonProperty
     public String getPerformerName() {
@@ -13,7 +13,7 @@ public class Performance {
     }
 
     @JsonProperty
-    public PersonRole getRole() {
+    public Role getRole() {
         return role;
     }
 
