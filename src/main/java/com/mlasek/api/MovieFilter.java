@@ -4,11 +4,12 @@ import com.mlasek.core.MovieGenre;
 import com.mlasek.core.Role;
 import io.dropwizard.jersey.jsr310.LocalDateParam;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
 
-public class MovieFilter {
+public class MovieFilter implements Serializable {
     private MovieFilter(UUID id, String title, MovieGenre genre, String performer, Role role, String origin, LocalDate dateFrom, LocalDate dateTo, Integer durationFrom, Integer durationTo) {
         this.id = id;
         this.title = title;
@@ -195,5 +196,56 @@ public class MovieFilter {
 
     public void setDurationTo(Integer durationTo) {
         this.durationTo = durationTo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MovieFilter that = (MovieFilter) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (title != null ? !title.equals(that.title) : that.title != null) return false;
+        if (genre != that.genre) return false;
+        if (performer != null ? !performer.equals(that.performer) : that.performer != null) return false;
+        if (role != that.role) return false;
+        if (origin != null ? !origin.equals(that.origin) : that.origin != null) return false;
+        if (dateFrom != null ? !dateFrom.equals(that.dateFrom) : that.dateFrom != null) return false;
+        if (dateTo != null ? !dateTo.equals(that.dateTo) : that.dateTo != null) return false;
+        if (durationFrom != null ? !durationFrom.equals(that.durationFrom) : that.durationFrom != null) return false;
+        return durationTo != null ? durationTo.equals(that.durationTo) : that.durationTo == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (genre != null ? genre.hashCode() : 0);
+        result = 31 * result + (performer != null ? performer.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (origin != null ? origin.hashCode() : 0);
+        result = 31 * result + (dateFrom != null ? dateFrom.hashCode() : 0);
+        result = 31 * result + (dateTo != null ? dateTo.hashCode() : 0);
+        result = 31 * result + (durationFrom != null ? durationFrom.hashCode() : 0);
+        result = 31 * result + (durationTo != null ? durationTo.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MovieFilter{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", genre=" + genre +
+                ", performer='" + performer + '\'' +
+                ", role=" + role +
+                ", origin='" + origin + '\'' +
+                ", dateFrom=" + dateFrom +
+                ", dateTo=" + dateTo +
+                ", durationFrom=" + durationFrom +
+                ", durationTo=" + durationTo +
+                '}';
     }
 }

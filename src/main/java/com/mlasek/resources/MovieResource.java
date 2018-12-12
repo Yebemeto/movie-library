@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Path("/movies")
+@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MovieResource {
 

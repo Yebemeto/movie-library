@@ -60,8 +60,16 @@ public class DummyMovieRepository implements MovieRepository {
     }
 
     @Override
-    public Movie save(Movie movie) {
-        movie.setId(UUID.randomUUID());
+    public Movie save(Movie inputMovie) {
+        Movie movie = Movie.builder()
+                .withId(UUID.randomUUID())
+                .withCountryOfOrigin(inputMovie.getCountryOfOrigin())
+                .withDescription(inputMovie.getDescription())
+                .withDuration(inputMovie.getDuration())
+                .withGenres(inputMovie.getGenres())
+                .withPerformers(inputMovie.getPerformers())
+                .withReleaseDate(inputMovie.getReleaseDate())
+                .withTitle(inputMovie.getTitle()).build();
         movies.add(movie);
         return movie;
     }
