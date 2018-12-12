@@ -48,7 +48,19 @@ public class MovieRepositoryTest {
                 .withRole(Role.SCREENWRITER)
                 .withTitle("The Godfather")
                 .build();
-        assertThat(repository.filter(filter).size()).isEqualTo(1);
+        List<Movie> resultList = repository.filter(filter);
+        assertThat(resultList.size()).isEqualTo(1);
+        Movie result = resultList.get(0);
+        assertThat(result.getCountryOfOrigin()).isEqualTo("USA");
+        assertThat(result.getDuration()).isEqualTo(175);
+        assertThat(result.getGenres()).contains(MovieGenre.CRIME);
+        assertThat(result.getReleaseDate()).isEqualTo(LocalDate.of(1972, Month.MARCH, 14));
+        assertThat(result.getPerformers())
+                .anyMatch(performance -> performance.getRole()
+                        .equals(Role.SCREENWRITER)&&
+                        performance.getPerformerName().equals("Mario Puzo"));
+        assertThat(result.getTitle()).isEqualTo("The Godfather");
+        assertThat(result.getId()).isEqualTo(MOCKED_MOVIE_UUID);
     }
 
     @Test
